@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>FruitLiz - Ensaladas y Batidos</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+      <!-- Prevenir apertura en WhatsApp -->
+  <meta name="format-detection" content="telephone=no">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FruitLiz - Menú Completo">
+  <meta property="og:description" content="Ensaladas y Batidos Saludables">
+  
+  <!-- Forzar apertura externa -->
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Pragma" content="no-cache">
+
+
+
+    <style>
+      :root {
+        --primary: #ff6b6b;
+        --secondary: #4ecdc4;
+        --yellow: #ffd93d;
+        --green: #2d6a4f;
+        --orange: #ff8c42;
+        --dark: #2d3436;
+        --light: #f9fafb;
+        --card-bg: #ffffff;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.15);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #fff9e6 0%, #e8f8f5 100%);
+        color: var(--dark);
+        line-height: 1.6;
+        padding-bottom: 80px;
+      }
+
+      .header {
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          var(--yellow) 0%,
+          var(--orange) 100%
+        );
+        padding: 20px;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .logo {
+        max-width: 100%;
+        height: auto;
+        max-height: 180px;
+        margin: 0 auto;
+        display: block;
+        border-radius: 20px;
+      }
+
+      .container {
+        padding: 20px 16px;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .info-banner {
+        background: linear-gradient(135deg, var(--secondary), var(--green));
+        color: white;
+        padding: 18px;
+        border-radius: 16px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+
+      .info-banner h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .info-banner p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        opacity: 0.95;
+      }
+
+      .section {
+        background: var(--card-bg);
+        border-radius: 24px;
+        padding: 24px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .section:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 3px solid var(--yellow);
+      }
+
+      .section-icon {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, var(--yellow), var(--orange));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--green);
+      }
+
+      .section-subtitle {
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 2px;
+      }
+
+      .ingredients-showcase {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+        padding: 16px;
+        background: #fff9e6;
+        border-radius: 12px;
+        border-left: 4px solid var(--yellow);
+      }
+
+      .ingredient-tag {
+        background: white;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--dark);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .smoothie-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .card {
+        background: linear-gradient(135deg, #ffffff, #f8f9fa);
+        border: 2px solid #f0f0f0;
+        border-radius: 18px;
+        padding: 18px;
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--secondary), var(--green));
+        transform: scaleX(0);
+        transition: transform 0.3s;
+      }
+
+      .card:active {
+        transform: scale(0.98);
+        border-color: var(--secondary);
+      }
+
+      .card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        gap: 12px;
+      }
+
+      .card h3 {
+        color: var(--green);
+        font-size: 0.95rem;
+        font-weight: 700;
+        flex: 1;
+        line-height: 1.3;
+      }
+
+      .price-badge {
+        background: linear-gradient(135deg, var(--primary), var(--orange));
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 1rem;
+        white-space: nowrap;
+        box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+      }
+
+      .card p {
+        font-size: 0.8rem;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 10px;
+      }
+
+      .benefits {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 10px;
+      }
+
+      .benefit-tag {
+        background: linear-gradient(135deg, #e8f8f5, #d5f5e3);
+        color: var(--green);
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+
+      .premium-card {
+        background: linear-gradient(135deg, #fff5e6, #ffe6cc);
+        border-color: var(--orange);
+      }
+
+      .premium-badge {
+        background: linear-gradient(135deg, var(--orange), var(--yellow));
+        color: white;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        display: inline-block;
+        margin-bottom: 8px;
+      }
+
+      .cta-section {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 16px;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .cta-button {
+        width: 100%;
+        padding: 18px;
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        color: white;
+        border: none;
+        border-radius: 16px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        transition: transform 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+
+      .cta-button:active {
+        transform: scale(0.98);
+      }
+
+      .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @media (max-width: 480px) {
+        .logo-text {
+          font-size: 2rem;
+        }
+        .section-title {
+          font-size: 1.2rem;
+        }
+        .card h3 {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+
+    <body>
+  <!-- Modal para abrir en navegador externo -->
+  <div id="external-browser-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:99999; justify-content:center; align-items:center;">
+    <div style="background:white; padding:30px; border-radius:20px; max-width:90%; width:400px; text-align:center;">
+      <div style="font-size:50px; margin-bottom:15px;">📱</div>
+      <h2 style="color:#2D6A4F; margin-bottom:15px;">Abre en tu navegador</h2>
+      <p style="color:#666; margin-bottom:20px; line-height:1.5;">
+        Para ver el menú correctamente, ábrelo en Safari o Chrome
+      </p>
+      <button onclick="openInExternalBrowser()" style="background:#25D366; color:white; border:none; padding:15px 30px; border-radius:12px; font-size:16px; font-weight:bold; cursor:pointer; width:100%; margin-bottom:10px;">
+         Abrir en Navegador
+      </button>
+      <button onclick="closeModal()" style="background:#f0f0f0; color:#333; border:none; padding:12px 30px; border-radius:12px; font-size:14px; cursor:pointer; width:100%;">
+        Cerrar
+      </button>
+    </div>
+  </div>
+
+<script>
+(function() {
+  // Detectar WhatsApp
+  var isWhatsApp = /WhatsApp/i.test(navigator.userAgent) || /wv/.test(navigator.userAgent);
+  
+  if (isWhatsApp) {
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    var isAndroid = /Android/i.test(navigator.userAgent);
+    
+    // Guardar URL actual
+    var currentUrl = window.location.href;
+    
+    // Crear botón flotante
+    var floatBtn = document.createElement('div');
+    floatBtn.innerHTML = `
+      <div style="position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#25D366; color:white; padding:15px 25px; border-radius:50px; font-weight:bold; box-shadow:0 4px 15px rgba(0,0,0,0.3); z-index:9999; cursor:pointer; display:flex; align-items:center; gap:10px;">
+        <span>📱</span>
+        <span>Abrir en Navegador</span>
+      </div>
+    `;
+    
+    floatBtn.onclick = function() {
+      window.open(currentUrl, '_blank');
+    };
+    
+    document.body.appendChild(floatBtn);
+    
+    // Mostrar alerta después de 2 segundos
+    setTimeout(function() {
+      if (confirm('🥗 FruitLiz\n\n¿Deseas abrir el menú en tu navegador para una mejor experiencia?')) {
+        window.open(currentUrl, '_blank');
+      }
+    }, 2000);
+  }
+})();
+</script>
+
+  <!-- Resto de tu contenido... -->
+
+
+
+
+
+
+
+
+    <div class="header">
+      <img src="4.jpg" alt="" width="70%" />
+    </div>
+
+    <div class="container">
+      <div class="info-banner">
+        <h3><i class="fas fa-info-circle"></i> Información Importante</h3>
+        <p>
+          🍯 Endulzantes: Stevia o Miel de abeja<br />
+          🍓 Frutas Adicionales: $1.000 cada una<br />
+          🥛 Yogurt / Kumis / Granola: $1.000
+        </p>
+      </div>
+
+      <!-- BATIDOS SECTION -->
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Elige tu batido o ensalda</div>
+            <div class="section-subtitle">
+              Si prefieres hacer un pedido personalizado presiona el boton
+              CONTACTANOS
+            </div>
+          </div>
+          <div class="section-icon">🌿</div>
+        </div>
+
+        <div class="smoothie-grid">
+          <div class="section-header">
+            <div class="section-icon">🥤</div>
+            <div>
+              <div class="section-title">BATIDOS</div>
+            </div>
+          </div>
+          <div class="card" onclick="orderItem('Batido de PIÑA-BANANO-FRESA', 5000)">
+            <div class="card-header">
+              <h3>🍍 PIÑA-BANANO-FRESA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Este jugo es antioxidante, anti anémico, diurético, regula el
+              tránsito intestinal, y tiene un efecto calmante.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Antioxidante</span>
+              <span class="benefit-tag">Diurético</span>
+              <span class="benefit-tag">Calmante</span>
+            </div>
+          </div>
+
+          <div class="card" onclick="orderItem(' Batido de NARANJA-FRESA-PIÑA', 5000)">
+            <div class="card-header">
+              <h3>🍊 NARANJA-FRESA-PIÑA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Este jugo es antioxidante, diurético, fortalece el sistema
+              inmunológico. Ofrece un excelente aporte de fibra.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Inmunológico</span>
+              <span class="benefit-tag">Alta fibra</span>
+            </div>
+          </div>
+
+          <div class="card" onclick="orderItem('Batido de MELÓN-BANANO-FRESA', 5000)">
+            <div class="card-header">
+              <h3>🍈 MELÓN-BANANO-FRESA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Este jugo es anticancerígeno; ayuda a la buena circulación, mejora
+              la digestión, y el tránsito intestinal; sacia el apetito.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Anticancerígeno</span>
+              <span class="benefit-tag">Circulación</span>
+            </div>
+          </div>
+
+          <div class="card" onclick="orderItem('Batido de PAPAYA-MANZANA-LIMÓN', 5000)">
+            <div class="card-header">
+              <h3>🟠 PAPAYA-MANZANA-LIMÓN</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Este jugo brinda beneficios en las propiedades digestivas,
+              diuréticas, hidratantes, antioxidante y ayuda al estreñimiento.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Digestivo</span>
+              <span class="benefit-tag">Hidratante</span>
+            </div>
+          </div>
+
+          <div class="card" onclick="orderItem('Batido de KIWI-NARANJA-BANANO', 5000)">
+            <div class="card-header">
+              <h3>🥝 KIWI-NARANJA-BANANO</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Este jugo tiene propiedades anti inflamatorias, reduce el estrés
+              oxidativo en el cuerpo, ayudando a mantener un sistema
+              inmunológico fuerte y un cuerpo en óptimas condiciones.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Antiinflamatorio</span>
+              <span class="benefit-tag">Inmunológico</span>
+            </div>
+          </div>
+
+          <div class="card" onclick="orderItem('Batido de PAPAYA-BANANO-PERA', 5000)">
+            <div class="card-header">
+              <h3>🟠 PAPAYA-BANANO-PERA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Este batido es beneficioso para la mejorar la Gastritis, ya que
+              ayuda a la desinflamación estomacal.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Gastritis</span>
+              <span class="benefit-tag">Digestivo</span>
+            </div>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Batido de REMOLACHA-ZANAHORIA-FRESA', 5000)"
+          >
+            <div class="card-header">
+              <h3>🔴 REMOLACHA-ZANAHORIA-FRESA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Este jugo sirve para refrescar e hidratar, Contiene vitamina C,
+              vitamina A, potasio, magnesio, ácido fólico, Es una bebida
+              antioxidante.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Hidratante</span>
+              <span class="benefit-tag">Antioxidante</span>
+            </div>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Batido de APIO-PEPINO-ESPINACA-LIMÓN', 5000)"
+          >
+            <div class="card-header">
+              <h3>🌿 APIO-PEPINO-ESPINACA-LIMÓN</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Mejora de la digestión, el fortalecimiento del sistema
+              inmunológico y el aumento de la ingesta de nutrientes esenciales.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Digestivo</span>
+              <span class="benefit-tag">Inmunológico</span>
+            </div>
+          </div>
+
+          <div class="card" onclick="orderItem('Batido de REMOLACHA-APIO-LIMÓN', 5000)">
+            <div class="card-header">
+              <h3>🔴 REMOLACHA-APIO-LIMÓN</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Aporta vitaminas, minerales, fibras y fitoquímicos, es
+              anticancerígeno, anti anémico, antibacteriano. controla el
+              colesterol y mejora la presión arterial.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Anticancerígeno</span>
+              <span class="benefit-tag">Colesterol</span>
+            </div>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Batido de ZANAHORIA, MANZANA ROJA Y JENGIBRE', 5000)"
+          >
+            <div class="card-header">
+              <h3>🥕 ZANAHORIA, MANZANA ROJA Y JENGIBRE</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Este batido favorece para la disminución del Colon irritable,
+              siendo rico en fibra y con propiedades antiinflamatorias.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Colon irritable</span>
+              <span class="benefit-tag">Antiinflamatorio</span>
+            </div>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Batido de MANZANA VERDE-PERA-KIWI', 5000)"
+          >
+            <div class="card-header">
+              <h3>🍏 MANZANA VERDE-PERA-KIWI</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Este batido es beneficio para mejorar la Diabetes, ya que contiene
+              bajos niveles de azúcar, ayudando a controlar los niveles de
+              azucares en sangre.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Diabetes</span>
+              <span class="benefit-tag">Bajo azúcar</span>
+            </div>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Batido de PAPAYA-AVENA-SEMILLA DE CHÍA', 5000)"
+          >
+            <div class="card-header">
+              <h3>🟠 PAPAYA-AVENA-SEMILLA DE CHÍA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Este batido promueve el tránsito intestinal y estimulan la
+              saciedad lo que favorece el Bajar de peso.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Pérdida peso</span>
+              <span class="benefit-tag">Saciedad</span>
+            </div>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Batido de NARANJAS, ZANAHORIAS, JENGIBRE', 5000)"
+          >
+            <div class="card-header">
+              <h3>🍊 NARANJAS, ZANAHORIAS, JENGIBRE</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              La vitamina C de la naranja y los antioxidantes de la zanahoria
+              pueden ayudar a reducir el estrés y la ansiedad.
+            </p>
+            <div class="benefits">
+              <span class="benefit-tag">Anti-estrés</span>
+              <span class="benefit-tag">Antioxidante</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENSALADAS SECTION -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">🥗</div>
+          <div>
+            <div class="section-title">Ensaladas de Frutas</div>
+            <div class="section-subtitle">Elige 3 ingredientes - $5.000</div>
+          </div>
+        </div>
+
+        <div class="smoothie-grid">
+          <div
+            class="card"
+            onclick="orderItem('Ensalada PIÑA-BANANO-FRESA', 5000)"
+          >
+            <div class="card-header">
+              <h3>🍍 PIÑA-BANANO-FRESA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Esta deliciosa ensalada contine vitamina C, potasio, fibra,
+              antioxidantes, minerales y fibras.
+            </p>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Ensalada KIWI-FRESA-BANANO', 5000)"
+          >
+            <div class="card-header">
+              <h3>🥝 KIWI-FRESA-BANANO</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Esta ensalada de frutas contiene vitamina C, ácido fólico,
+              potasio, minerales, fibra, vitamina B.
+            </p>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Ensalada MELÓN-BANANO-FRESA', 5000)"
+          >
+            <div class="card-header">
+              <h3>🍈 MELÓN-BANANO-FRESA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Contiene minerales, antioxidantes, vitaminas A, B, C y E, calcio,
+              hierro, potasio, fibra.
+            </p>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Ensalada KIWI-PAPAYA-PIÑA', 5000)"
+          >
+            <div class="card-header">
+              <h3>🥝 KIWI-PAPAYA-PIÑA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Reduce riesgo de enfermedades crónicas, mejora la digestión,
+              vitaminas c, fortalece el sistema inmunológico, mejora la función
+              respiratoria.
+            </p>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Ensalada MANZANA R-KIWI-FRESA', 5000)"
+          >
+            <div class="card-header">
+              <h3>🍎 MANZANA R-KIWI-FRESA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Contiene antioxidantes, vitaminas y fibras, fortalecimiento del
+              sistema inmunológico, mejora la función digestiva.
+            </p>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Ensalada PERA-FRESA-BANANO', 5000)"
+          >
+            <div class="card-header">
+              <h3>🍐 PERA-FRESA-BANANO</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Reduce la presión arterial, rico en potasio y minerales, buenas
+              fuentes de fibra y ayuda a la digestión, prevención de
+              enfermedades crónicos y nutritiva.
+            </p>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Ensalada PIÑA-PAPAYA-MELÓN', 5000)"
+          >
+            <div class="card-header">
+              <h3>🍍 PIÑA-PAPAYA-MELÓN</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Ayuda a la digestión, protege la piel, hidratación, aporte de
+              nutrientes como vitamina C y E.
+            </p>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Ensalada KIWI-PATILLA-PIÑA', 5000)"
+          >
+            <div class="card-header">
+              <h3>🥝 KIWI-PATILLA-PIÑA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Contiene vitamina c y antioxidantes, ayuda al sistema
+              inmunológico, pérdida de peso, hidratación y protección de la
+              piel.
+            </p>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Ensalada PATILLA-FRESA-UVA', 5000)"
+          >
+            <div class="card-header">
+              <h3>🍉 PATILLA-FRESA-UVA</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Fortalece al sistema inmunológico, es fuente de fibra y reduce el
+              riesgo de enfermedades cardiovasculares.
+            </p>
+          </div>
+
+          <div
+            class="card"
+            onclick="orderItem('Ensalada MANGO-PAPAYA-KIWI', 5000)"
+          >
+            <div class="card-header">
+              <h3>🥭 MANGO-PAPAYA-KIWI</h3>
+              <span class="price-badge">$5.000</span>
+            </div>
+            <p>
+              Protege la piel, ayuda al metabolismo, contiene vitamina c y
+              antioxidantes, cuida la piel, contiene vitaminas A, C, y B,
+              minerales y antioxidantes.
+            </p>
+          </div>
+
+          <div
+            class="card premium-card"
+            onclick="
+              orderItem('Ensalada especial GRANOLA ARTESANAL-YOGURT GRIEGO-FRESA', 7000)
+            "
+          >
+            <div class="premium-badge">⭐ PREMIUM</div>
+            <div class="card-header">
+              <h3>🥣 GRANOLA ARTESANAL-YOGURT GRIEGO-FRESA</h3>
+              <span class="price-badge">$7.000</span>
+            </div>
+            <p>
+              Rica en proteínas, fibra, vitaminas y antioxidantes, promoviendo
+              la salud digestiva, aportando energía sostenida y contribuyendo a
+              una dieta equilibrada.
+            </p>
+          </div>
+
+          <div
+            class="card premium-card"
+            onclick="
+              orderItem('Ensalada especial con YOGURT GRIEGO-GRANOLA ARTESANAL-KIWI', 7000)
+            "
+          >
+            <div class="premium-badge">⭐ PREMIUM</div>
+            <div class="card-header">
+              <h3>🥣 YOGURT GRIEGO-GRANOLA ARTESANAL-KIWI</h3>
+              <span class="price-badge">$7.000</span>
+            </div>
+            <p>
+              Alto contenido de proteínas, fibra, vitaminas y antioxidantes, es
+              una excelente fuente de vitamina C, un antioxidante que fortalece
+              el sistema inmunológico y ayuda a proteger contra enfermedades.
+            </p>
+          </div>
+
+          <div
+            class="card premium-card"
+            onclick="
+              orderItem(
+                'Ensalada especial con YOGURT GRIEGO-GRANOLA ARTESANAL-DURAZNO',
+                7000,
+              )
+            "
+          >
+            <div class="premium-badge">⭐ PREMIUM</div>
+            <div class="card-header">
+              <h3>🍑 YOGURT GRIEGO-GRANOLA ARTESANAL-DURAZNO</h3>
+              <span class="price-badge">$7.000</span>
+            </div>
+            <p>
+              Ensalada rica en proteínas y probióticos que benefician la
+              digestión y el sistema inmunológico; añade vitaminas,
+              antioxidantes y fibra adicional.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">🥤</div>
+          <div>
+            <div class="section-title">Frutas para Batidos y ensaladas especiales</div>
+            <div class="section-subtitle">Elige 3 ingredientes - $5.000, agrega frutas adicionales $1.000 cada una</div>
+          </div>
+        </div>
+
+        <div class="ingredients-showcase">
+          <span
+            style="
+              font-size: 0.85rem;
+              color: #666;
+              width: 100%;
+              margin-bottom: 8px;
+            "
+            ><strong>Ingredientes disponibles:</strong></span
+          >
+          <span class="ingredient-tag">🍎 Manzana</span>
+          <span class="ingredient-tag">🍈 Melón</span>
+          <span class="ingredient-tag">🍍 Piña</span>
+          <span class="ingredient-tag">🍌 Banano</span>
+          <span class="ingredient-tag">🥝 Kiwi</span>
+          <span class="ingredient-tag">🟡 Granadilla</span>
+          <span class="ingredient-tag">🍊 Naranja</span>
+          <span class="ingredient-tag">🍉 Patilla</span>
+          <span class="ingredient-tag">🥭 Mango</span>
+          <span class="ingredient-tag">🟠 Papaya</span>
+          <span class="ingredient-tag">🍊 Mandarina</span>
+          <span class="ingredient-tag">🍓 Fresa</span>
+          <span class="ingredient-tag">🍇 Uva</span>
+          <span class="ingredient-tag">🍐 Pera</span>
+          <span class="ingredient-tag"> Pitahaya</span>
+          <span class="ingredient-tag">🥕 Zanahoria</span>
+          <span class="ingredient-tag">🥒 Pepino</span>
+          <span class="ingredient-tag">🌿 Apio</span>
+          <span class="ingredient-tag">🔴 Remolacha</span>
+          <span class="ingredient-tag">🥬 Espinacas</span>
+          <span class="ingredient-tag">🫚 Jengibre</span>
+          <span class="ingredient-tag">💛 Cúrcuma</span>
+          <span class="ingredient-tag">🌾 Avena</span>
+          <span class="ingredient-tag">🌰 Chía</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <a href="#" class="cta-button pulse" onclick="orderWhatsApp()">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="white">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+          />
+        </svg>
+        Contactanos
+      </a>
+    </div>
+
+    <script>
+      let selectedItem = null;
+
+      function orderItem(name, price) {
+        selectedItem = { name, price };
+        setTimeout(() => {
+          orderWhatsApp();
+        }, 300);
+      }
+
+      function orderWhatsApp() {
+        const phone = "573018523381";
+        let message = "¡Hola FruitLiz! 👋%0A%0A";
+
+        if (selectedItem) {
+          message += `Quiero pedir:%0A🥤 *${selectedItem.name}*%0A💰 Precio: $${selectedItem.price.toLocaleString("es-CO")}%0A`;
+          message += "Por favor entregarlo en la siguiente direccion:";
+        } else {
+          message += "Quiero hacer un pedido:%0A, entregar en la siguiente direccion:";
+          message += "Me vende por favor:";
+        }
+
+        message += "%0A¡Gracias!";
+
+        window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+      }
+    </script>
+  </body>
+</html>
