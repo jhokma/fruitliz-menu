@@ -424,8 +424,9 @@
 
     <div class="container">
       <div class="info-banner">
-        <h3><i class="fas fa-info-circle"></i> Información Importante</h3>
+        <h3><i class="fas fa-info-circle"></i> Información Importante 📢 </h3>
         <p>
+          🚴 Solo tenemos servicio a domicilio <br>
           🍯 Endulzantes: Stevia o Miel de abeja<br />
           🍓 Frutas Adicionales: $1.000 cada una<br />
           🥛 Yogurt / Kumis / Granola: $1.000
@@ -930,6 +931,186 @@
           <span class="ingredient-tag">🌰 Chía</span>
         </div>
       </div>
+
+
+
+<!-- ========================================== -->
+<!-- CALCULADORA IMC + TODAS LAS OPCIONES       -->
+<!-- ========================================== -->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<section id="calculadora-imc" style="margin: 25px 0; padding: 20px; background-color: #f0fff4; border-radius: 15px; border: 2px dashed #48bb78;">
+    <h3 style="text-align: center; color: #2f855a; margin-bottom: 15px;"> Calculadora de Salud FruitLiz</h3>
+    <p>Tu salud es importante para nosotros, echa un vistazo a tu condicion fisica👌</p><br>
+    
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+            <label style="font-weight: bold; font-size: 14px;">¿Cuál es tu nombre? 📝</label>
+            <input type="text" id="nombre" placeholder="Ej: Juan Pérez" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; margin-top: 5px; box-sizing: border-box;">
+        </div>
+
+        <div>
+            <label style="font-weight: bold; font-size: 14px;">Peso (kg): ⚖️</label>
+            <input type="number" id="peso" placeholder="Ej: 65" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; margin-top: 5px; box-sizing: border-box;">
+        </div>
+
+        <div>
+            <label style="font-weight: bold; font-size: 14px;">Altura (metros): 📏</label>
+            <input type="number" id="altura" placeholder="Ej: 1.70" step="0.01" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; margin-top: 5px; box-sizing: border-box;">
+        </div>
+
+        <button onclick="calcularIMC()" style="background-color: #48bb78; color: white; padding: 12px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 5px;">
+            Ver todas mis opciones recomendadas 🥑
+        </button>
+    </div>
+
+    <!-- RESULTADO (Oculto hasta que se calcula) -->
+    <div id="resultado-imc" style="display: none; margin-top: 20px;">
+        
+        <!-- TARJETA VISUAL (Lo que se exporta en la foto) -->
+        <div id="tarjeta-exportar" style="background: linear-gradient(135deg, #48bb78 0%, #2f855a 100%); padding: 20px; border-radius: 15px; color: white; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); max-width: 450px; margin: 0 auto;">
+            <h2 style="margin: 0; font-size: 24px;">🥗 FruitLiz</h2>
+            <p style="margin: 5px 0; font-size: 14px; opacity: 0.9;">Tu Plan de Salud Personalizado</p>
+            
+            <div style="background: rgba(255,255,255,0.95); border-radius: 10px; padding: 15px; margin-top: 15px; color: #2d3748; max-height: 500px; overflow-y: auto;">
+                <p id="saludo-imc" style="margin: 0; font-size: 16px; font-weight: bold;"></p>
+                <h2 id="valor-imc" style="margin: 5px 0; font-size: 36px; font-weight: 800; color: #2f855a;"></h2>
+                <p id="estado-imc" style="font-weight: bold; font-size: 16px; margin-bottom: 10px;"></p>
+                
+                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 10px 0;">
+                
+                <h4 style="margin: 0; color: #2d3748; text-align: left; font-size: 14px;">🍏 Menú Recomendado para ti:</h4>
+                <ul id="lista-recomendaciones" style="margin: 5px 0 0 0; padding-left: 15px; list-style-type: none; text-align: left;">
+                    <!-- Se llena con JS -->
+                </ul>
+            </div>
+            
+            <p style="margin-top: 10px; font-size: 10px; opacity: 0.85; line-height: 1.3; font-style: italic;">
+                ⚠️ Recomendación orientativa. No sustituye el consejo médico.
+            </p>
+        </div>
+
+        <!-- Botón para Guardar -->
+        <button id="btn-exportar" onclick="guardarImagen()" style="width: 100%; margin-top: 15px; background-color: #2d3748; color: white; padding: 10px; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; max-width: 450px; margin-left: auto; margin-right: auto; display: block;">
+              Guardar Resultado como Imagen
+        </button>
+
+        <!-- Texto adicional (Solo visible en web) -->
+        <div style="margin-top: 15px; text-align: center; max-width: 450px; margin-left: auto; margin-right: auto;">
+            <p style="font-size: 13px; color: #2d3748; line-height: 1.4;">
+                ¿No ves lo que buscas?  En la sección <b>"Personalizado"</b> puedes armar tu batido.
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+    function calcularIMC() {
+        const nombre = document.getElementById('nombre').value.trim();
+        const peso = parseFloat(document.getElementById('peso').value);
+        const altura = parseFloat(document.getElementById('altura').value);
+        
+        const resultadoDiv = document.getElementById('resultado-imc');
+        const valorTexto = document.getElementById('valor-imc');
+        const estadoTexto = document.getElementById('estado-imc');
+        const saludoTexto = document.getElementById('saludo-imc');
+        const listaRec = document.getElementById('lista-recomendaciones');
+
+        if (!nombre) { alert("Por favor escribe tu nombre."); return; }
+        if (!peso || !altura || peso <= 0 || altura <= 0) { alert("Por favor ingresa tu peso y altura."); return; }
+
+        const imc = peso / (altura * altura);
+        let estado = "", color = "", recomendaciones = [];
+
+        // LÓGICA COMPLETA DE RECOMENDACIONES BASADA EN EL MENÚ
+        if (imc < 18.5) {
+            //  BAJO PESO: Opciones densas en nutrientes y energía
+            estado = " Bajo peso";
+            color = "#4299e1";
+            saludoTexto.textContent = `Hola ${nombre},`;
+            recomendaciones = [
+                "⭐ <b>PREMIUM ($7.000)</b>: Todas las opciones con Yogurt Griego y Granola (Alto en proteínas y energía).",
+                "🥤 <b>Melón-Banano-Fresa ($5.000)</b>: Saca el apetito y aporta vitaminas A, B, C y E.",
+                "🥤 <b>Papaya-Banano-Pera ($5.000)</b>: Ideal para mejorar gastritis y desinflamar.",
+                "🥤 <b>Remolacha-Zanahoria-Fresa ($5.000)</b>: Rico en ácido fólico y minerales.",
+                "🥗 <b>Ensaladas con Papaya y Banano ($5.000)</b>: Excelentes fuentes de energía."
+            ];
+        } else if (imc < 25) {
+            //  PESO NORMAL: Mantenimiento, Inmunidad y Digestión
+            estado = "🟢 Peso Normal";
+            color = "#48bb78";
+            saludoTexto.textContent = `¡Hola ${nombre}!,`;
+            recomendaciones = [
+                "🥤 <b>Naranja-Fresa-Piña ($5.000)</b>: Fortalece sistema inmunológico y alta fibra.",
+                "🥤 <b>Kiwi-Naranja-Banano ($5.000)</b>: Antiinflamatorio y reduce estrés oxidativo.",
+                "🥤 <b>Piña-Banano-Fresa ($5.000)</b>: Diurético y calmante.",
+                "🥤 <b>Zanahoria, Manzana y Jengibre ($5.000)</b>: Antiinflamatorio para colon irritable.",
+                "🥤 <b>Naranjas, Zanahorias, Jengibre ($5.000)</b>: Reduce estrés y ansiedad.",
+                "🥗 <b>Kiwi-Papaya-Piña ($5.000)</b>: Reduce riesgo de enfermedades crónicas."
+            ];
+        } else if (imc < 30) {
+            // 🟠 SOBREPESO: Bajar peso, Saciedad y Control
+            estado = "🟠 Sobrepeso";
+            color = "#ed8936";
+            saludoTexto.textContent = `Hola ${nombre},`;
+            recomendaciones = [
+                " <b>Papaya-Avena-Chía ($5.000)</b>: ¡Especial para bajar de peso! Promueve saciedad.",
+                "🥤 <b>Manzana Verde-Pera-Kiwi ($5.000)</b>: Bajos niveles de azúcar, controla glucosa.",
+                " <b>Apio-Pepino-Espinaca ($5.000)</b>: Mejora digestión y aporta nutrientes sin exceso.",
+                "🥤 <b>Papaya-Avena-Chía ($5.000)</b>: Estimula el tránsito intestinal.",
+                "🥤 <b>Remolacha-Apio-Limón ($5.000)</b>: Controla colesterol.",
+                "🥗 <b>Kiwi-Patilla-Piña ($5.000)</b>: Ayuda a la pérdida de peso."
+            ];
+        } else {
+            // 🔴 OBESIDAD: Bajo azúcar, Detox y Control estricto
+            estado = " Obesidad";
+            color = "#f56565";
+            saludoTexto.textContent = `Hola ${nombre},`;
+            recomendaciones = [
+                "🥤 <b>Manzana Verde-Pera-Kiwi ($5.000)</b>: Mejor opción para Diabetes (Bajo azúcar).",
+                "🥤 <b>Apio-Pepino-Espinaca-Limón ($5.000)</b>: Depurativo, mejora digestión e inmune.",
+                "🥤 <b>Remolacha-Apio-Limón ($5.000)</b>: Controla presión arterial y colesterol.",
+                "🥤 <b>Papaya-Avena-Chía ($5.000)</b>: Excelente fibra para regular el peso.",
+                "🥤 <b>Zanahoria, Manzana, Jengibre ($5.000)</b>: Antiinflamatorio digestivo.",
+                "🥗 <b>Ensaladas sin Banano ($5.000)</b>: Prefiere opciones con Kiwi, Papaya y Piña."
+            ];
+        }
+
+        // Renderizar lista
+        listaRec.innerHTML = recomendaciones.map(r => `<li style="margin-bottom:8px; font-size: 12px; line-height:1.3;">${r}</li>`).join('');
+
+        valorTexto.textContent = imc.toFixed(1);
+        valorTexto.style.color = color;
+        estadoTexto.textContent = estado;
+        estadoTexto.style.color = color;
+        
+        resultadoDiv.style.display = "block";
+    }
+
+    function guardarImagen() {
+        const nodo = document.getElementById('tarjeta-exportar');
+        
+        html2canvas(nodo, {
+            scale: 2, 
+            backgroundColor: null,
+            useCORS: true
+        }).then(canvas => {
+            const enlace = document.createElement('a');
+            enlace.download = 'Plan-Salud-FruitLiz.png';
+            enlace.href = canvas.toDataURL();
+            enlace.click();
+        }).catch(err => {
+            alert("Error al generar imagen.");
+        });
+    }
+</script>
+
+
+
+
+
+
+
     </div>
 
     <div class="cta-section">
