@@ -955,11 +955,11 @@
 
       function orderWhatsApp() {
         const phone = "573018523381";
-        let message = "¡Hola FruitLiz! 👋%0A%0A";
+        let message = "¡Hola FruitLiz! 👋%0A%";
 
         if (selectedItem) {
-          message += `Quiero pedir:%0A🥤 *${selectedItem.name}*%0A💰 Precio: $${selectedItem.price.toLocaleString("es-CO")}%0A`;
-          message += "Por favor entregarlo en la siguiente direccion:";
+          message += `Quiero pedir:%0A📦 *${selectedItem.name}*%0A💰 Precio: $${selectedItem.price.toLocaleString("es-CO")}%0A`;
+          message += "Por favor entregarlo en la siguiente direccion 🏠 :%0A%0A";
         }       
 
         window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
@@ -967,11 +967,11 @@
 
       function orderWhatsApp2() {
         const phone = "573018523381";
-        let message = "¡Hola FruitLiz! 👋%0A%0A";
+        let message = "¡Hola FruitLiz! 👋%0A%";
 
 
-          message += "Quiero hacer un pedido de :%0A%0A";
-          message += "Por favor entregar en la siguiente direccion :%0A%0A ";
+          message += "Quiero hacer un pedido 📦 de :%0A%0A";
+          message += "Por favor entregar en la siguiente direccion 🏠 :%0A%0A ";
       
 
         window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
